@@ -4,3 +4,4 @@ fastapi==0.115.12
 uvicorn[standard]==0.34.3
 python-dotenv==1.1.0
 fredapi==0.5.2
+scipy==1.15.3

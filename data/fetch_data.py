@@ -19,6 +19,6 @@ series = {
 }
 
 for name, code in series.items():
-    df = fred.get_series(code, start="1990-01-01")
+    df = fred.get_series(code, start="1987-01-01")
     df.to_csv(OUTPUT_DIR / f"{name}.csv", header=True)
     print(f" wrote {name}.csv - {len(df)} rows")
