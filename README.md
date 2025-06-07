@@ -1,4 +1,7 @@
-housing-bubble/
+## Project Structure
+
+```
+housing-bubble-indicator/
 ├─ README.md                ← project overview & quick-start
 ├─ .gitignore
 ├─ data/                    ← *only* version-controlled tiny CSVs or scripts to pull them
@@ -35,6 +38,7 @@ housing-bubble/
 │  ├─ package.json
 │  └─ tsconfig.json
 │
-├─ scripts/                 ← one-liners you’ll reuse (e.g., `docker_dev.sh`)
+├─ scripts/                 ← one-liners you'll reuse (e.g., `docker_dev.sh`)
 ├─ docker-compose.yml       ← `api` + `ui` services for local dev
 └─ vercel.json / render.yaml← deploy configs (copy-paste friendly)
+```
