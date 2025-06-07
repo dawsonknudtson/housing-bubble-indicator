@@ -5,6 +5,7 @@ from scipy.special import expit
 DATA_DIR = Path(__file__).parents[3] / "data" / "raw"
 
 def load_series():
+    # parse_dates and index_col are currently not being used, due to raw data being wrong format 
     price  = pd.read_csv(DATA_DIR / "price.csv",  parse_dates=True, index_col=0)
     rent   = pd.read_csv(DATA_DIR / "rent.csv",   parse_dates=True, index_col=0)
     income = pd.read_csv(DATA_DIR / "income.csv", parse_dates=True, index_col=0)
