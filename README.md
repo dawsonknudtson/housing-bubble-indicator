@@ -1,3 +1,21 @@
+## How to Run
+
+### Backend (FastAPI)
+```bash
+cd backend
+python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+The backend will be available at `http://localhost:8000`
+
+### Frontend (React + Vite)
+```bash
+cd frontend
+npm run dev
+```
+The frontend will be available at `http://localhost:5173`
+
+---
+
 ## Project Structure
 
 ```
@@ -26,7 +44,7 @@ housing-bubble-indicator/
 │  │   ├─ components/
 │  │   │   ├─ ScoreGauge.tsx
 │  │   │   ├─ BubbleChart.tsx
-│  │   │   └─ RegionSelect.tsx
+│  │   │   └─ RegionSelect.tsx 
 │  │   ├─ hooks/
 │  │   │   └─ useBubbleScore.ts
 │  │   ├─ pages/
