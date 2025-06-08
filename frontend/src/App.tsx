@@ -57,6 +57,8 @@ function Dashboard() {
             border: '2px solid #bdc3c7',
             borderRadius: '8px',
             background: 'white',
+            color: '#000000',
+            textAlign: 'center',
             minWidth: '200px'
           }}
           disabled={yearsLoading}
