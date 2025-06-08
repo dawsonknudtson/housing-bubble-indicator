@@ -10,6 +10,12 @@ app.add_middleware(
 )
 
 @app.get("/score")
-def score():
-    date, value = compute_bubble_score()
-    return {"date": date.date().isoformat(), "score": value} 
+def score(year: int = None):
+    date, value = compute_bubble_score(year)
+    return {"date": date.date().isoformat(), "score": value}
+
+@app.get("/years")
+def available_years():
+    from app.services.bubble_calc import get_available_years
+    years = get_available_years()
+    return {"years": years} 

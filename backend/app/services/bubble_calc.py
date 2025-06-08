@@ -18,7 +18,7 @@ def load_series():
     
     return price, rent, income
 
-def compute_bubble_score() -> tuple[pd.Timestamp, float]:
+def compute_bubble_score(year: int = None) -> tuple[pd.Timestamp, float]:
     price, rent, income = load_series()
     
     common_dates = price.index.intersection(rent.index).intersection(income.index)
@@ -40,8 +40,24 @@ def compute_bubble_score() -> tuple[pd.Timestamp, float]:
     raw_score = 0.6 * z_pr + 0.4 * z_pi
     score = 100 * expit(raw_score)
 
+    if year is not None:
+        year_data = score[score.index.year == year]
+        if len(year_data) > 0:
+            latest_date = year_data.index[-1]
+            return latest_date, round(year_data.iloc[-1], 1)
+    
     latest_date = score.index[-1]
     return latest_date, round(score.iloc[-1], 1)
+
+def get_available_years():
+    price, rent, income = load_series()
+    common_dates = price.index.intersection(rent.index).intersection(income.index)
+    
+    if len(common_dates) == 0:
+        return []
+    
+    years = sorted(common_dates.year.unique().tolist())
+    return years
 
 if __name__ == "__main__":
     print(compute_bubble_score())
