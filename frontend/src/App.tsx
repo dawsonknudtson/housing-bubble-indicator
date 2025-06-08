@@ -2,6 +2,7 @@ import './App.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useState } from 'react'
 import ScoreGauge from './components/ScoreGauge'
+import BubbleChart from './components/BubbleChart'
 import { useAvailableYears } from './hooks/useBubbleScore'
 
 const queryClient = new QueryClient()
@@ -71,6 +72,8 @@ function Dashboard() {
       </div>
 
       <ScoreGauge year={selectedYear} />
+
+      <BubbleChart height={500} />
 
       <footer style={{ 
         textAlign: 'center', 

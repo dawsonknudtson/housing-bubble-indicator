@@ -25,3 +25,22 @@ export function useAvailableYears() {
     retry: false
   })
 }
+
+export interface TimeSeriesDataPoint {
+  date: string
+  score: number
+  year: number
+  month: number
+}
+
+export function useBubbleTimeSeries() {
+  return useQuery({
+    queryKey: ['timeseries'],
+    queryFn: async () => {
+      const r = await fetch('/timeseries')
+      return r.json() as Promise<{ data: TimeSeriesDataPoint[] }>
+    },
+    staleTime: 300_000,
+    retry: false
+  })
+}

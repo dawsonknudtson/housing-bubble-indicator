@@ -18,4 +18,9 @@ def score(year: int = None):
 def available_years():
     from app.services.bubble_calc import get_available_years
     years = get_available_years()
-    return {"years": years} 
+    return {"years": years}
+
+@app.get("/timeseries")
+def get_timeseries():
+    from app.services.bubble_calc import get_bubble_timeseries
+    return get_bubble_timeseries() 

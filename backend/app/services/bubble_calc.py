@@ -59,6 +59,40 @@ def get_available_years():
     years = sorted(common_dates.year.unique().tolist())
     return years
 
+def get_bubble_timeseries():
+    price, rent, income = load_series()
+    
+    common_dates = price.index.intersection(rent.index).intersection(income.index)
+    
+    if len(common_dates) == 0:
+        return {"data": []}
+        
+    price = price[common_dates]
+    rent = rent[common_dates]
+    income = income[common_dates]
+
+    pr = price / rent 
+    pi = price / income
+
+    normal = slice("1987-01-01", "2019-12-31")
+    z_pr = (pr - pr[normal].mean()) / pr[normal].std()
+    z_pi = (pi - pi[normal].mean()) / pi[normal].std()
+
+    raw_score = 0.6 * z_pr + 0.4 * z_pi
+    score = 100 * expit(raw_score)
+
+    # Convert to list of dictionaries for JSON response
+    data = []
+    for date, value in score.items():
+        data.append({
+            "date": date.date().isoformat(),
+            "score": round(value, 1),
+            "year": date.year,
+            "month": date.month
+        })
+    
+    return {"data": data}
+
 if __name__ == "__main__":
     print(compute_bubble_score())
 

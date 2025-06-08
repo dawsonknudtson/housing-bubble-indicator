@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server:{ proxy: { 
     '/score': 'http://localhost:8000',
-    '/years': 'http://localhost:8000'
+    '/years': 'http://localhost:8000',
+    '/timeseries': 'http://localhost:8000'
   } }
 })
